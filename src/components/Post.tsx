@@ -1,9 +1,10 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 
+import { FontAwesomeIcon, FontAwesomeIconProps } from '@fortawesome/react-fontawesome';
 import { faBell, faCalendarAlt, faComment, faMap } from '@fortawesome/free-regular-svg-icons';
 
 import { Carousel } from 'react-responsive-carousel';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import React from 'react'
 
 type User = {
@@ -22,6 +23,18 @@ export interface PostI {
   imagesURL?: string[]
 }
 
+interface SectionTitleI {
+  title: string
+  icon: IconProp
+}
+
+const SectionTitle: React.FC<SectionTitleI> = ({ title, icon }) => (
+  <p>
+    <FontAwesomeIcon icon={icon} className="mr-[5px] w-4 inline"/>
+    {title}
+  </p>
+)
+
 const Post: React.FC<PostI> = ({
   title,
   description,
@@ -34,7 +47,7 @@ const Post: React.FC<PostI> = ({
   const fullName = user.firstName + ' ' + user.lastName;
   return (
     <div>
-      <div className="max-w-[400px] shadow-xl rounded-md overflow-hidden">
+      <div className="w-[400px] shadow-xl rounded-md overflow-hidden">
         <div className="h-[400px]">
           <Carousel showThumbs={false} showStatus={false} infiniteLoop>
             {
@@ -54,8 +67,8 @@ const Post: React.FC<PostI> = ({
                 <img className='rounded-full max-w-[30px] mr-[10px]' src={user.profile || 'https://picsum.photos/100/100'} />
                 <span>{fullName}</span>
               </div>
-              <div>
-                <FontAwesomeIcon icon={faCalendarAlt} className="mr-[5px]"/>
+              <div className="flex items-center">
+                <FontAwesomeIcon icon={faCalendarAlt} className="mr-[5px] w-4 inline"/>
                 14 Oct, 2022
               </div>
               <div className="bg-primary border-none p-[15px] text-white rounded-[5px] h-[30px] w-fit leading-[0px]">
@@ -63,10 +76,7 @@ const Post: React.FC<PostI> = ({
               </div>
             </div>
             <div className="text-[15px] mt-[10px]">
-              <span >
-                <FontAwesomeIcon icon={faComment} className='mr-[5px]' />
-                Last place seen
-              </span>
+              <SectionTitle title="Last place seen" icon={faComment} />
               <div
                 className="block max-w-full m-auto leading-[1.3] overflow-hidden text-ellipsis mt-2"
               >
@@ -79,12 +89,11 @@ const Post: React.FC<PostI> = ({
               </a>
             </div>
             <div className="text-[15px] mt-[10px]">
-              <span>
-                <FontAwesomeIcon icon={faMap} className='mr-[5px]' />Address</span>
+                <SectionTitle icon={faMap} title="Address" />
                 <p className='mt-2'>{address}</p>
             </div>
             <div className="mt-[10px]">
-              <FontAwesomeIcon icon={faBell} className='mr-[5px]' /> Tags
+              <SectionTitle icon={faBell} title="Tags" />
               <div className="mt-[10px] flex flex-wrap gap-2">
                 {tags.slice(0, 5).map((tag, idx) => (
                   <div
@@ -103,4 +112,5 @@ const Post: React.FC<PostI> = ({
   )
 }
 
-export default Post
+export default React.memo(Post);
+
