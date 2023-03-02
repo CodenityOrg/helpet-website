@@ -17,3 +17,10 @@ export const Primary: Story = {
   },
 };
 
+export const Active: Story = {
+  args: {
+    children: 'Hello world',
+    variant: 'active'
+  }
+}
+
