@@ -18,7 +18,7 @@ const defaultClassNames = `
 
 const Button: React.FC<ButtonI> = (props) => {
   const variants = {
-    default: 'bg-[#009900] hover:bg-[#039603] text-white',
+    default: 'bg-primary hover:bg-[#039603] text-white',
     active: 'bg-white hover:bg-[#d3d2d2] text-[#21b16a]'
   };
 
