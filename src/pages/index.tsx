@@ -14,17 +14,17 @@ export default function Home() {
       <main>
         <section className="m-0 p-0 bg-center bg-cover h-screen relative">
           <Image
-            style={{ objectFit: 'cover' }}
+            style={{ objectFit: 'cover'}}
             alt=''
             src="/assets/img/background-puppy.webp"
             fill
             quality={100}
           />
           <div style={{ background: 'rgba(33, 177, 106, .53)' }} className="absolute z-10 w-full h-full">
-            <div className="flex items-center justify-center bg-transparent h-full">
-              <ul className="flex items-center justify-center">
-                <div className="text-white w-[50%]">
-                    <h3 className="text-[2.5em]">
+            <div className="flex items-center justify-center bg-transparent h-full mx-[20px]">
+              <ul className="flex lg:w-auto items-center justify-center">
+                <div className="text-white md:w-[50%] w-full">
+                    <h3 className="md:text-[2.5em] text-[1.4em]">
                       <div className="leading-[1.2]">
                         Encuentra a tu <b>mascota</b>
                         <br />
@@ -33,12 +33,12 @@ export default function Home() {
                     </h3>
                     <h4 className="mt-[10px]">Porque las mascotas son los mejores amigos</h4>
                     <div className="flex mt-[20px]">
-                      <Button href='/publicaciones' className="mr-[10px] h-[55px]" variant='active'>Comienza</Button>
-                      <Button className='h-[55px]' variant='active'>Aprende Como</Button>
+                      <Button href='/posts' title='posts' className="mr-[10px] md:h-[55px] h-[35px] md:text-[14px] text-[10px]" variant='active'>Comienza</Button>
+                      <Button title='Learn How to' className='md:h-[55px] h-[35px] md:text-[14px] text-[10px]' variant='active'>Aprende Como</Button>
                       <a className="ml-[10px] text-[#21b16a]"></a>
                     </div>
                 </div>
-                <div className="w-[50%]">
+                <div className="lg:w-[50%] w-0">
                 </div>
               </ul>
             </div>
