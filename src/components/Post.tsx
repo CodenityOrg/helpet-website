@@ -1,10 +1,11 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 
-import { FontAwesomeIcon, FontAwesomeIconProps } from '@fortawesome/react-fontawesome';
 import { faBell, faCalendarAlt, faComment, faMap } from '@fortawesome/free-regular-svg-icons';
 
 import { Carousel } from 'react-responsive-carousel';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import Image from 'next/image'
 import React from 'react'
 
 type User = {
@@ -46,14 +47,22 @@ const Post: React.FC<PostI> = ({
 }) => {
   const fullName = user.firstName + ' ' + user.lastName;
   return (
-    <div>
-      <div className="w-[400px] shadow-xl rounded-md overflow-hidden">
-        <div className="h-[400px]">
-          <Carousel showThumbs={false} showStatus={false} infiniteLoop>
+    <>
+      <div className="w-[735px] h-[400px] flex shadow-xl rounded-md overflow-hidden">
+        <div className="h-full max-w-[400px]">
+          <Carousel
+            className="h-full"
+            showThumbs={false}
+            showStatus={false}
+            infiniteLoop
+          >
             {
               imagesURL.map((imageURL, idx) => (
-                <div className="w-full h-full">
-                  <img className="h-full" key={idx} src={imageURL} alt='Post Image' />
+                <div key={idx} className="w-full h-full">
+                  <img
+                    src={imageURL}
+                    alt='Carousel Photo'
+                  />
                 </div>
               ))
             }
@@ -62,7 +71,7 @@ const Post: React.FC<PostI> = ({
         <div className="mt-[10px]">
           <div className='px-[10px] mx-[10px] relative pb-[25px]'>
             <h2 className='text-[30px]'>{title}</h2>
-            <div className="flex flex-row items-center justify-between">
+            <div className="flex flex-row items-center justify-between mt-[20px]">
               <div className='flex items-center'>
                 <img className='rounded-full max-w-[30px] mr-[10px]' src={user.profile || 'https://picsum.photos/100/100'} />
                 <span>{fullName}</span>
@@ -108,7 +117,7 @@ const Post: React.FC<PostI> = ({
           </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 
