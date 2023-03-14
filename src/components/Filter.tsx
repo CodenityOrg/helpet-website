@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react'
+import { useOnClickOutside, useToggle } from 'usehooks-ts';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
-import { useOnClickOutside } from 'usehooks-ts';
 
 interface Filters {
   label: string
@@ -17,10 +17,8 @@ const Filter: React.FC<Filters> = ({
   options,
   onSelected
 }) => {
-  const [showMenu, setShowMenu] = useState(false);
+  const [showMenu, toggle, setShowMenu] = useToggle();
   const ref = useRef(null);
-
-  const toggleMenuVisibility = () => setShowMenu((prevValue) => !prevValue);
 
   const handleClickOutside = () => setShowMenu(false);
 
@@ -33,7 +31,7 @@ const Filter: React.FC<Filters> = ({
 
   return (
     <div ref={ref} className="relative">
-      <div className="cursor-pointer select-none" onClick={toggleMenuVisibility}>
+      <div className="cursor-pointer select-none" onClick={toggle}>
         <FontAwesomeIcon icon={icon} className="mr-[5px] w-4 inline"/>
         {label}
       </div>
