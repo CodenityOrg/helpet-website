@@ -1,17 +1,17 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import { useOnClickOutside, useToggle } from 'usehooks-ts';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
-interface Filters {
+interface FiltersProps {
   label: string
   options: string[],
   icon: IconProp,
   onSelected: (option: string) => void
 }
 
-const Filter: React.FC<Filters> = ({
+const Filter: React.FC<FiltersProps> = ({
   icon,
   label,
   options,
